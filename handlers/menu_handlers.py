@@ -53,7 +53,7 @@ async def callback_handler(callback: types.CallbackQuery):
     # Обрабатываем кнопку «Услуги»
     if callback.data == "serv":
         media = InputMediaPhoto(
-            media=proc_pic,  # Для InputMediaPhoto используется `media`, а не `photo`
+            media=proc_pic, 
             caption=(
                 "Услуга 1)\n"
                 "Услуга 2)\n"
@@ -72,7 +72,28 @@ async def callback_handler(callback: types.CallbackQuery):
         except Exception as e:
             await callback.answer(f"Ошибка: {e}")
 
+    elif callback.data == "contacts":
+        media = InputMediaPhoto(
+            media=out_pic,  
+            caption=(
+                "Адрес\n"
+                "Телефон\n"
+                "e-mail\n"
+                "Телеграм\n"
+                "Нажми «Назад», чтобы вернуться."
+            )
+        )
+        try:
+            await callback.bot.edit_message_media(
+                chat_id=callback.message.chat.id,
+                message_id=callback.message.message_id,
+                media=media,
+                reply_markup=back_kb  # Меняем клавиатуру на «Назад»
+            )
+        except Exception as e:
+            await callback.answer(f"Ошибка: {e}")
     # Обрабатываем кнопку «Назад»
+    
     elif callback.data == "back":
         media = InputMediaPhoto(
             media=hello,
