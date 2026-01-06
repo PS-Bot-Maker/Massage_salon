@@ -9,9 +9,9 @@ from handlers.menu_handlers import menu_han_router
 #load_dotenv()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-#BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
+BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 
-#bot = Bot(token=BOT_TOKEN)
+bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 dp.include_routers(main_han_router, menu_han_router)
 
@@ -24,3 +24,4 @@ async def main():
 if __name__ == "__main__":
 
     asyncio.run(main())
+
