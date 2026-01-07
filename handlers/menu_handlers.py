@@ -2,7 +2,7 @@ from aiogram import Router, types, F
 from aiogram.filters.command import Command
 from aiogram.types import FSInputFile, InputMediaPhoto, InlineKeyboardMarkup, InlineKeyboardButton
 import os
-from bot_config import all_media_dir, privacy_file
+from bot_config import all_media_dir, privacy_file, services_text
 
 # Инициализация роутера
 menu_han_router = Router()
@@ -33,15 +33,20 @@ order_kb = InlineKeyboardMarkup(inline_keyboard=[
 ])
 
 # Приветственный текст
-hello_text = (
-    "Здравствуйте!\n\n"
-    "Это приветственное сообщение с картинкой и меню.\n"
-    "Выберите действие ниже:"
+hello_text = ("""Здравствуйте! 👋
+Я — виртуальный помощник массажного салона [Название]. 
+Готов помочь вам:
+-подобрать подходящую процедуру;
+-узнать расписание свободных окон;
+-записаться на сеанс;
+-получить консультацию по ценам и акциям.
+Чтобы начать, выберите интересующую тему ниже"""
 )
-
 # Клавиатура «Назад»
 back_kb = InlineKeyboardMarkup(inline_keyboard=[
+    [InlineKeyboardButton(text="📝       Записаться на массаж       📝", callback_data="order")],
     [InlineKeyboardButton(text="← Назад", callback_data="back")]
+    
 ])
 
 
@@ -61,13 +66,7 @@ async def callback_handler(callback: types.CallbackQuery):
     if callback.data == "serv":
         media = InputMediaPhoto(
             media=proc_pic, 
-            caption=(
-                "Услуга 1)\n"
-                "Услуга 2)\n"
-                "Услуга 3)\n"
-                "Услуга 4)\n"
-                "Нажми «Назад», чтобы вернуться."
-            )
+            caption=services_text
         )
         try:
             await callback.bot.edit_message_media(
@@ -104,10 +103,11 @@ async def callback_handler(callback: types.CallbackQuery):
         media = InputMediaPhoto(
             media=spec_pic,  
             caption=(
-                "Галина Костоправова\n"
-                "Мастер копчикового массажа\n"
-                "Диплом копчиколома 4 разряда\n"
-                "Нажми «Назад», чтобы вернуться."
+                "Галина\n"
+                "Мастер универсал\n"
+                "Стаж 10 лет\n"
+                "Диплом массажиста, сертификат, грамота\n \n"     #это могут быть ссылки на документы
+                "Нажми «Записаться на массаж», чтобы попасть к ней на приём."
             )
         )
         try:
@@ -124,8 +124,7 @@ async def callback_handler(callback: types.CallbackQuery):
         media = InputMediaPhoto(
             media=help_pic,  
             caption=(
-                "ТАК ТАК ТАК!!!\n"
-                "ЩА РАЗБЕРЁМСЯ\n"
+                "раздел ещё в стадии разработки\n"
             )
         )
         try:
@@ -133,7 +132,9 @@ async def callback_handler(callback: types.CallbackQuery):
                 chat_id=callback.message.chat.id,
                 message_id=callback.message.message_id,
                 media=media,
-                reply_markup=back_kb  # Меняем клавиатуру на «Назад»
+                reply_markup=InlineKeyboardMarkup(inline_keyboard=[
+                [InlineKeyboardButton(text="← Назад", callback_data="back")]
+                ])  # Меняем клавиатуру на «Назад»
             )
         except Exception as e:
             await callback.answer(f"Ошибка: {e}")
