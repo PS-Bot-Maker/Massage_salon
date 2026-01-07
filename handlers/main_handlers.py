@@ -5,6 +5,3 @@ import os
 
 
 main_han_router = Router()
-
-
-

@@ -2,12 +2,12 @@ from aiogram import Router, types, F
 from aiogram.filters.command import Command
 from aiogram.types import FSInputFile, InputMediaPhoto, InlineKeyboardMarkup, InlineKeyboardButton
 import os
+from bot_config import all_media_dir, privacy_file
 
 # Инициализация роутера
 menu_han_router = Router()
 
-# Путь к папке с изображениями
-all_media_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'img')
+
 
 # Загрузка файлов
 hello = FSInputFile(os.path.join(all_media_dir, 'hello.jpg'))
@@ -19,11 +19,17 @@ help_pic= FSInputFile(os.path.join(all_media_dir, 'help_pic.jpeg'))
 
 # Основная клавиатура меню
 main_menu_kb = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text="💆                    Услуги                    💆", callback_data="serv")],
-    [InlineKeyboardButton(text="📞                  Контакты                  📞", callback_data="contacts")],
+    [InlineKeyboardButton(text="💆                Услуги                💆", callback_data="serv")],
+    [InlineKeyboardButton(text="📞              Контакты              📞", callback_data="contacts")],
     [InlineKeyboardButton(text="⭐         Наши специалисты         ⭐", callback_data="spec")],
-    [InlineKeyboardButton(text="💬                   Помощь                   💬", callback_data="help")],
+    [InlineKeyboardButton(text="💬               Помощь               💬", callback_data="help")],
     [InlineKeyboardButton(text="📝       Записаться на массаж       📝", callback_data="order")]
+])
+
+order_kb = InlineKeyboardMarkup(inline_keyboard=[
+    [InlineKeyboardButton(text="👍             Согласен(а)             👍", callback_data="approve")],
+    [InlineKeyboardButton(text="👍          Скачать документ           👍", callback_data="sendmedoc")],
+    [InlineKeyboardButton(text="← Назад", callback_data="back")]
 ])
 
 # Приветственный текст
@@ -132,6 +138,39 @@ async def callback_handler(callback: types.CallbackQuery):
         except Exception as e:
             await callback.answer(f"Ошибка: {e}")
 
+    #Обрабатываем кнопку "Заказать"
+    elif callback.data == "order":
+        media = InputMediaPhoto(
+            media=int_pic,  
+            caption=(
+                "Перед тем как мы продолжим необходимо\n"
+                "дать согласие на обработку пользовательских данных\n"
+            )
+        )
+        try:
+            await callback.bot.edit_message_media(
+                chat_id=callback.message.chat.id,
+                message_id=callback.message.message_id,
+                media=media,
+                reply_markup=order_kb  # Добавляем кнопку согласия на обработку пользовательских данных, скачивание пользовательского соглашения и кнопку назад
+            )
+        except Exception as e:
+            await callback.answer(f"Ошибка: {e}")
+
+    #Обрабатываем кнопку "Скачать"
+    elif callback.data == "sendmedoc":
+        try:
+            await callback.message.answer_document(
+            document=privacy_file,
+            caption="Вот ваш файл!"
+        )
+        # Уведомляем пользователя всплывающим окном
+            await callback.answer("Файл отправлен!")
+        except FileNotFoundError:
+            await callback.answer("Ошибка: файл не найден!")
+        except Exception as e:
+            await callback.answer(f"Ошибка: {e}")
+
     # Обрабатываем кнопку «Назад»
     
     elif callback.data == "back":
@@ -150,9 +189,4 @@ async def callback_handler(callback: types.CallbackQuery):
             await callback.answer(f"Ошибка: {e}")
 
     # Отвечаем на callback (убираем «часики» у кнопки)
-
     await callback.answer()
-
-
-
-
