@@ -162,13 +162,15 @@ async def callback_handler(callback: types.CallbackQuery):
         try:
             await callback.message.answer_document(
             document=privacy_file,
-            caption="Вот ваш файл!"
+            caption="Вот ваш файл!",
+            reply_markup=order_kb
         )
-       
+        
+            await callback.message.delete()
         # Уведомляем пользователя всплывающим окном
-            await callback.answer("Файл отправлен!", show_alert=True)
-         #Удаляем сообщение
-            await callback.answer.message.delete()
+            await callback.answer("Соглашение отправлено. После ознакомления нажмите кнопку Согласен(а) что бы продолжить.", show_alert=True)
+        #Удаляем сообщение
+            await callback.message.delete()
         except FileNotFoundError:
             await callback.answer("Ошибка: файл не найден!", show_alert=True)
         except Exception as e:
@@ -192,6 +194,4 @@ async def callback_handler(callback: types.CallbackQuery):
             await callback.answer(f"Ошибка: {e}")
 
     # Отвечаем на callback (убираем «часики» у кнопки)
-
     await callback.answer()
-
