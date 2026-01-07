@@ -92,6 +92,27 @@ async def callback_handler(callback: types.CallbackQuery):
             )
         except Exception as e:
             await callback.answer(f"Ошибка: {e}")
+    
+    elif callback.data == "spec":
+        media = InputMediaPhoto(
+            media=spec_pic,  
+            caption=(
+                "Галина Костоправова\n"
+                "Мастер копчикового массажа\n"
+                "Диплом копчиколома 4 разряда\n"
+                "Нажми «Назад», чтобы вернуться."
+            )
+        )
+        try:
+            await callback.bot.edit_message_media(
+                chat_id=callback.message.chat.id,
+                message_id=callback.message.message_id,
+                media=media,
+                reply_markup=back_kb  # Меняем клавиатуру на «Назад»
+            )
+        except Exception as e:
+            await callback.answer(f"Ошибка: {e}")
+
     # Обрабатываем кнопку «Назад»
     
     elif callback.data == "back":
