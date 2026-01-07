@@ -27,8 +27,8 @@ main_menu_kb = InlineKeyboardMarkup(inline_keyboard=[
 ])
 
 order_kb = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text="👍             Согласен(а)             👍", callback_data="approve")],
-    [InlineKeyboardButton(text="👍          Скачать документ           👍", callback_data="sendmedoc")],
+    [InlineKeyboardButton(text="👍              Согласен(а)               👍", callback_data="approve")],
+    [InlineKeyboardButton(text="📝          Скачать документ           📝", callback_data="sendmedoc")],
     [InlineKeyboardButton(text="← Назад", callback_data="back")]
 ])
 
