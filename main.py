@@ -3,7 +3,7 @@ import os
 import logging
 from aiogram import Bot, Dispatcher
 #from dotenv import load_dotenv
-from handlers.main_handlers import main_han_router
+from handlers.order_handlers import order_han_router
 from handlers.menu_handlers import menu_han_router
 
 #load_dotenv()
@@ -13,7 +13,7 @@ BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
-dp.include_routers(main_han_router, menu_han_router)
+dp.include_routers(order_han_router_han_router, menu_han_router)
 
 async def main():
     logger.info("Запуск бота...")
