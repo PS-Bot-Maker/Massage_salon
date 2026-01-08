@@ -24,6 +24,7 @@ share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+/data/clients.db
 MANIFEST
 
 # PyInstaller
@@ -208,4 +209,3 @@ __marimo__/
 
 #Database
 
-/data/clients.db
