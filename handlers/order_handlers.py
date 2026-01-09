@@ -1,12 +1,15 @@
-from aiogram import Router, types, F
-from aiogram.filters.command import Command
-from data.bot_config import db
-import sqlite3
-
+from aiogram import Router
+from aiogram.types import CallbackQuery
 
 order_han_router = Router()
 
-@order_han_router.message(Command('ordering'))
-async def start_ordering(message: types.Message):
-    clients_db = sqlite3.connect(db)
-    await message.answer("Всё сработало как надо!", alert=True)
+@order_han_router.callback_query(lambda c: c.data == "approve")
+async def start_ordering(callback: CallbackQuery):
+        try:
+            await callback.bot.send_message(
+                 chat_id=callback.message.chat.id,
+                 text="Работает!")
+        except Exception as e:
+            await callback.answer(f"Ошибка: {e}")
+
+        await callback.answer()
