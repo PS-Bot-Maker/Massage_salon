@@ -3,7 +3,7 @@ import os
 import logging
 from aiogram import Bot, Dispatcher
 #from dotenv import load_dotenv
-from handlers.order_handlers import order_han_router
+#from handlers.order_handlers import order_han_router
 from handlers.menu_handlers import menu_han_router
 
 #load_dotenv()
@@ -13,7 +13,11 @@ BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
+<<<<<<< HEAD
 dp.include_routers(order_han_router, menu_han_router)
+=======
+dp.include_routers(menu_han_router)
+>>>>>>> 9ad48ff3b67590be33003412fc396203e1a2ac62
 
 async def main():
     logger.info("Запуск бота...")
@@ -22,4 +26,7 @@ async def main():
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
+
     asyncio.run(main())
+
+
