@@ -5,7 +5,10 @@ from aiogram.filters.command import Command
 order_han_router = Router()
 
 @order_han_router.message(Command("ordering"))
-async def message(message: types.Message):
-    await message.answer("Всё получилось", alert=True)
+async def show_alert_ordering(callback_query: types.CallbackQuery):
+    await bot.answer.callback_query(callback_query.id,
+    text="Всё получилось", 
+    show_alert=True
+    )
 
-#await callback.answer()
+await callback.answer()
