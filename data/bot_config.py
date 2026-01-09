@@ -22,4 +22,4 @@ services_text = (
 
 )
 
-db = 'data/clients.db'
+#db = 'data/clients.db'
