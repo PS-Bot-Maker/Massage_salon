@@ -11,4 +11,4 @@ async def show_alert_ordering(callback_query: types.CallbackQuery):
     show_alert=True
     )
 
-await callback.answer()
+#await callback.answer()
