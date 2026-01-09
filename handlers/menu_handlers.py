@@ -6,13 +6,15 @@ from data.bot_config import services_text
 # Инициализация роутера
 menu_han_router = Router()
 #images links
-hello = 'https://disk.yandex.ru/get/mky90I09j4a4mw'
-int_pic = 'https://disk.yandex.ru/get/-hkTCwDDmS0S-Q'
-out_pic = 'https://disk.yandex.ru/get/7ddIVQMkvprBmg'
-sale_pic = 'https://disk.yandex.ru/get/r_tDrWKvq3u37w'
-help_pic = 'https://disk.yandex.ru/get/kZQ1DV7hPaOTdQ'
-spec_pic = 'https://disk.yandex.ru/get/b23AAYwefRk1lQ'
-proc_pic = 'https://disk.yandex.ru/get/ABiY54bGDF_vAg'
+hello = "https://i126.fastpic.org/big/2026/0109/78/268d20e446fc22d41ee8ac81774f6d78.jpg"
+int_pic = "https://i126.fastpic.org/big/2026/0109/78/268d20e446fc22d41ee8ac81774f6d78.jpg"
+out_pic = "https://i126.fastpic.org/big/2026/0109/78/268d20e446fc22d41ee8ac81774f6d78.jpg"
+sale_pic = "https://i126.fastpic.org/big/2026/0109/78/268d20e446fc22d41ee8ac81774f6d78.jpg"
+help_pic = "https://i126.fastpic.org/big/2026/0109/78/268d20e446fc22d41ee8ac81774f6d78.jpg"
+spec_pic = "https://i126.fastpic.org/big/2026/0109/78/268d20e446fc22d41ee8ac81774f6d78.jpg"
+proc_pic = "https://i126.fastpic.org/big/2026/0109/78/268d20e446fc22d41ee8ac81774f6d78.jpg"
+
+
 
 
 
