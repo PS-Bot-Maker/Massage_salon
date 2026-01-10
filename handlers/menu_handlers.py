@@ -6,13 +6,13 @@ from data.bot_config import services_text
 # Инициализация роутера
 menu_han_router = Router()
 #images links
-hello = "https://i126.fastpic.org/big/2026/0109/78/268d20e446fc22d41ee8ac81774f6d78.jpg"
-int_pic = "https://i126.fastpic.org/big/2026/0109/78/268d20e446fc22d41ee8ac81774f6d78.jpg"
-out_pic = "https://i126.fastpic.org/big/2026/0109/78/268d20e446fc22d41ee8ac81774f6d78.jpg"
-sale_pic = "https://i126.fastpic.org/big/2026/0109/78/268d20e446fc22d41ee8ac81774f6d78.jpg"
-help_pic = "https://i126.fastpic.org/big/2026/0109/78/268d20e446fc22d41ee8ac81774f6d78.jpg"
-spec_pic = "https://i126.fastpic.org/big/2026/0109/78/268d20e446fc22d41ee8ac81774f6d78.jpg"
-proc_pic = "https://i126.fastpic.org/big/2026/0109/78/268d20e446fc22d41ee8ac81774f6d78.jpg"
+hello = "http://r9525826.beget.tech/img/hello.jpg"
+int_pic = "http://r9525826.beget.tech/img/hello.jpg"
+out_pic = "http://r9525826.beget.tech/img/hello.jpg"
+sale_pic = "http://r9525826.beget.tech/img/hello.jpg"
+help_pic = "http://r9525826.beget.tech/img/hello.jpg"
+spec_pic = "http://r9525826.beget.tech/img/hello.jpg"
+proc_pic = "http://r9525826.beget.tech/img/hello.jpg"
 
 
 
