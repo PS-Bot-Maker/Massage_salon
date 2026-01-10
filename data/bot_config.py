@@ -5,13 +5,13 @@ all_img_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'img')
 all_misc_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'misc')
 
 #images links
-hello = FSInputFile(os.path.join(all_img_dir, 'hello.jpg'))
-int_pic = FSInputFile(os.path.join(all_img_dir, 'int_pic.jpg'))
-out_pic = FSInputFile(os.path.join(all_img_dir, 'out_pic.jpg'))
-sale_pic = FSInputFile(os.path.join(all_img_dir, 'sale_pic.jpg'))
-help_pic = FSInputFile(os.path.join(all_img_dir, 'help_pic.jpeg'))
-spec_pic = FSInputFile(os.path.join(all_img_dir, 'spec_pic.jpg'))
-proc_pic = FSInputFile(os.path.join(all_img_dir, 'proc_pic.jpg'))
+hello = FSInputFile(os.path.join(all_img_dir, 'hello_pic_1.jpg'))
+int_pic = FSInputFile(os.path.join(all_img_dir, 'int_pic_1.jpg'))
+out_pic = FSInputFile(os.path.join(all_img_dir, 'out_pic_1.jpg'))
+sale_pic = FSInputFile(os.path.join(all_img_dir, 'sale_pic_1.jpg'))
+help_pic = FSInputFile(os.path.join(all_img_dir, 'help_pic_1.jpeg'))
+spec_pic = FSInputFile(os.path.join(all_img_dir, 'spec_pic_1.jpg'))
+proc_pic = FSInputFile(os.path.join(all_img_dir, 'proc_pic_1.jpg'))
 
 privacy_file = FSInputFile(os.path.join(all_misc_dir, 'privacy.docx'))
 
