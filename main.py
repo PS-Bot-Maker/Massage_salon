@@ -10,7 +10,6 @@ logger = logging.getLogger(__name__)
 
 BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 bot = Bot(token=BOT_TOKEN)
-#bot = Bot(token='8513847851:AAGsdfXmnUGcxiPB0OtGI0UmrmPtRo8EUPw')
 dp = Dispatcher()
 dp.include_routers(order_han_router, menu_han_router)
 
@@ -23,6 +22,7 @@ async def main():
 if __name__ == "__main__":
 
     asyncio.run(main())
+
 
 
 
