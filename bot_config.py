@@ -1,7 +1,7 @@
 import os
 from aiogram.types import FSInputFile
 
-all_img_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'img')
+all_img_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pic')
 all_misc_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'misc')
 
 #images links
