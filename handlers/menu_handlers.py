@@ -44,6 +44,14 @@ back_kb = InlineKeyboardMarkup(inline_keyboard=[
     
 ])
 
+spec_kb = InlineKeyboardMarkup(inline_keyboard=[
+    [InlineKeyboardButton(text="📝       Записаться на массаж       📝", callback_data="order")],
+    [InlineKeyboardButton(text="Следующий", callback_data="spec_next")],
+    [InlineKeyboardButton(text="Предыдущий", callback_data="spec_back")],
+    [InlineKeyboardButton(text="← Назад в меню", callback_data="back")]
+    
+])
+
 
 # Хендлер для /start
 @menu_han_router.message(Command("start"))
@@ -129,7 +137,7 @@ async def callback_handler(callback: types.CallbackQuery):
                 chat_id=callback.message.chat.id,
                 message_id=callback.message.message_id,
                 media=media,
-                reply_markup=back_kb  # Меняем клавиатуру на «Назад»
+                reply_markup=spec_kb  # Меняем клавиатуру на «Назад»
             )
         except Exception as e:
             await callback.answer(f"Ошибка: {e}")
