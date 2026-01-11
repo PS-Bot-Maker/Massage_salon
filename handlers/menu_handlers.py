@@ -2,8 +2,7 @@ from aiogram import Router, types, F
 from aiogram.filters.command import Command
 from aiogram.types import InputMediaPhoto, InlineKeyboardMarkup, InlineKeyboardButton, FSInputFile
 from data.bot_config import services_text, hello, int_pic, out_pic, sale_pic, spec_pic, proc_pic, help_pic, privacy_file
-
-
+from data.bot_config import spec_pic, spec2_pic, spec3_pic, spec4_pic
 # Инициализация роутера
 menu_han_router = Router()
 
@@ -44,13 +43,14 @@ back_kb = InlineKeyboardMarkup(inline_keyboard=[
     
 ])
 
-spec_kb = InlineKeyboardMarkup(inline_keyboard=[
+"""spec_kb = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text="📝       Записаться на массаж       📝", callback_data="order")],
-    [InlineKeyboardButton(text="Следующий", callback_data="spec_next")],
-    [InlineKeyboardButton(text="Предыдущий", callback_data="spec_back")],
+    [
+        InlineKeyboardButton(text="⏩", callback_data="spec_next"),  # Следующий специалист
+        InlineKeyboardButton(text="⏪", callback_data="spec_back")   # Предыдущая специалист
+    ],
     [InlineKeyboardButton(text="← Назад в меню", callback_data="back")]
-    
-])
+])"""
 
 
 # Хендлер для /start
@@ -99,7 +99,8 @@ async def callback_handler(callback: types.CallbackQuery):
             )
         except Exception as e:
             await callback.answer(f"Ошибка: {e}")
-
+    
+    #Кнопка "Контакты"
     elif callback.data == "contacts":
         media = InputMediaPhoto(
             media=out_pic,  
@@ -120,12 +121,13 @@ async def callback_handler(callback: types.CallbackQuery):
             )
         except Exception as e:
             await callback.answer(f"Ошибка: {e}")
-    
+
+    #Листаем специалистов
     elif callback.data == "spec":
         media = InputMediaPhoto(
             media=spec_pic,  
             caption=(
-                "Галина\n"
+                "Алина\n"
                 "Мастер универсал\n"
                 "Стаж 10 лет\n"
                 "Диплом массажиста, сертификат, грамота\n \n"     #это могут быть ссылки на документы
@@ -137,11 +139,111 @@ async def callback_handler(callback: types.CallbackQuery):
                 chat_id=callback.message.chat.id,
                 message_id=callback.message.message_id,
                 media=media,
-                reply_markup=spec_kb  # Меняем клавиатуру на «Назад»
-            )
+                reply_markup= InlineKeyboardMarkup(inline_keyboard=[
+                [
+                    InlineKeyboardButton(text="⏪", callback_data="spec_4"),  # Предыдущая специалист
+                    InlineKeyboardButton(text="⏩", callback_data="spec_2"),  # Следующий специалист   
+                ],
+                [
+                    InlineKeyboardButton(text="Записаться📝", callback_data="order"),
+                    InlineKeyboardButton(text="←Меню", callback_data="back")
+                ]
+                ])
+                )
         except Exception as e:
             await callback.answer(f"Ошибка: {e}")
 
+    elif callback.data == "spec_2":
+        media = InputMediaPhoto(
+            media=spec2_pic,  
+            caption=(
+                "Степан\n"
+                "Дровосек\n"
+                "Избавит вас от целлюлита за один сеанс\n"
+                "7 классов школы №2 х. Обильный\n \n"     #это могут быть ссылки на документы
+                "Нажми «Записаться на массаж», чтобы попасть к нему на... массаж."
+            )
+        )
+        try:
+            await callback.bot.edit_message_media(
+                chat_id=callback.message.chat.id,
+                message_id=callback.message.message_id,
+                media=media,
+                reply_markup= InlineKeyboardMarkup(inline_keyboard=[
+                [
+                    InlineKeyboardButton(text="⏪", callback_data="spec"),  # Предыдущая специалист
+                    InlineKeyboardButton(text="⏩", callback_data="spec_3"),  # Следующий специалист   
+                ],
+                [
+                    InlineKeyboardButton(text="Записаться📝", callback_data="order"),
+                    InlineKeyboardButton(text="←Меню", callback_data="back")
+                ]
+                ])
+                )
+        except Exception as e:
+            await callback.answer(f"Ошибка: {e}")
+
+    elif callback.data == "spec_3":
+        media = InputMediaPhoto(
+            media=spec3_pic,  
+            caption=(
+                "Галина\n"
+                "Мастер массажа ШВЗ\n"
+                "Вложит душу в ваши позвонки\n"
+                "Если честно коллектив её побаивается...\n \n"     #это могут быть ссылки на документы
+                "Нажми «Записаться на массаж», чтобы записаться к ней  на приём."
+            )
+        )
+        try:
+            await callback.bot.edit_message_media(
+                chat_id=callback.message.chat.id,
+                message_id=callback.message.message_id,
+                media=media,
+                reply_markup= InlineKeyboardMarkup(inline_keyboard=[
+                [
+                    InlineKeyboardButton(text="⏪", callback_data="spec_2"),  # Предыдущая специалист
+                    InlineKeyboardButton(text="⏩", callback_data="spec_4"),  # Следующий специалист   
+                ],
+                [
+                    InlineKeyboardButton(text="Записаться📝", callback_data="order"),
+                    InlineKeyboardButton(text="←Меню", callback_data="back")
+                ]
+                ])
+                )
+        except Exception as e:
+            await callback.answer(f"Ошибка: {e}")
+
+    elif callback.data == "spec_4":
+        media = InputMediaPhoto(
+            media=spec4_pic,  
+            caption=(
+                "Ольга\n"
+                "Мастер лимфодренажного массажа\n"
+                "Стаж 7 лет\n"
+                "Любителям острых ощущений стоит записаться к ней на массаж. Новые незабываемые ощущения гарантируем...\n"
+                "Нажми «Записаться на массаж», чтобы записаться к ней на приём."
+            )
+        )
+        try:
+            await callback.bot.edit_message_media(
+                chat_id=callback.message.chat.id,
+                message_id=callback.message.message_id,
+                media=media,
+                reply_markup= InlineKeyboardMarkup(inline_keyboard=[
+                [
+                    InlineKeyboardButton(text="⏪", callback_data="spec_3"),  # Предыдущая специалист
+                    InlineKeyboardButton(text="⏩", callback_data="spec"),  # Следующий специалист   
+                ],
+                [
+                    InlineKeyboardButton(text="Записаться📝", callback_data="order"),
+                    InlineKeyboardButton(text="←Меню", callback_data="back")
+                ]
+                ])
+                )
+        except Exception as e:
+            await callback.answer(f"Ошибка: {e}")
+  
+    #Обработка кнопки "Помощь"
     elif callback.data == "help":
         media = InputMediaPhoto(
             media=help_pic,  
@@ -179,9 +281,7 @@ async def callback_handler(callback: types.CallbackQuery):
             )
         except Exception as e:
             await callback.answer(f"Ошибка: {e}")
-
-
-    
+  
 
     #Обрабатываем кнопку "Скачать"
     elif callback.data == "sendmedoc":
