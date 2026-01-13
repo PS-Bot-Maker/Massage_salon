@@ -1,8 +1,9 @@
 from aiogram import Router, types, F
 from aiogram.filters.command import Command
 from aiogram.types import InputMediaAnimation, InputMediaVideo, InlineKeyboardMarkup, InlineKeyboardButton
-from bot_config import services_text, hello, int_pic, out_pic, sale_pic, spec_pic, proc_pic, help_pic, privacy_file
+from bot_config import services_text, hello, int_pic, out_pic, sale_pic, spec_pic, proc_pic, help_pic, privacy_file 
 from bot_config import spec_pic, spec2_pic, spec3_pic, spec4_pic, advance_services_text_1, advance_services_text_2, advance_services_text_3, advance_services_text_4
+from bot_config import adv_serv_1_vid, adv_serv_2_vid, adv_serv_3_vid, adv_serv_4_vid
 
 
 
@@ -23,6 +24,15 @@ order_kb = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text="📝          Скачать документ           📝", callback_data="sendmedoc")],
     [InlineKeyboardButton(text="← Назад", callback_data="back")]
 ])
+
+serv_kb = InlineKeyboardMarkup(inline_keyboard=[
+    InlineKeyboardButton(text="Записаться📝", callback_data="order"),
+    InlineKeyboardButton(text="← Назад", callback_data="back")
+], 
+[
+    InlineKeyboardButton(text="← Назад", callback_data="back")
+]
+)
 
 # Приветственный текст
 hello_text = ("""Здравствуйте! 👋
@@ -81,7 +91,7 @@ async def callback_handler(callback: types.CallbackQuery):
     # Листаем подробное описание услуг с видеопрезентациями
     elif callback.data == "adv_serv_1":
         media = InputMediaAnimation(
-            media=adv_serv1.gif,  
+            media=adv_serv_1_vid,  
             caption=advance_services_text_1
         )
         try:

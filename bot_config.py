@@ -24,10 +24,10 @@ sale_text = "Текст Акции\n"
 sale_date = "дата и время акции"
 
 #video path's
-adv_serv_1 = FSInputFile(os.path.join(all_img_dir, 'adv_serv_1.mp4'))
-adv_serv_2 = FSInputFile(os.path.join(all_img_dir, 'adv_serv_2.mp4'))
-adv_serv_3 = FSInputFile(os.path.join(all_img_dir, 'adv_serv_3.mp4'))
-adv_serv_4 = FSInputFile(os.path.join(all_img_dir, 'adv_serv_4.mp4'))
+adv_serv_1_vid = FSInputFile(os.path.join(all_img_dir, 'adv_serv_1.mp4'))
+adv_serv_2_vid = FSInputFile(os.path.join(all_img_dir, 'adv_serv_2.mp4'))
+adv_serv_3_vid = FSInputFile(os.path.join(all_img_dir, 'adv_serv_3.mp4'))
+adv_serv_4_vid = FSInputFile(os.path.join(all_img_dir, 'adv_serv_4.mp4'))
 
 #text
 services_text = (
