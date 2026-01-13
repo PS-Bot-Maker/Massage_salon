@@ -5,6 +5,7 @@ from bot_config import services_text, hello, int_pic, out_pic, sale_pic, spec_pi
 from bot_config import spec_pic, spec2_pic, spec3_pic, spec4_pic, advance_services_text_1, advance_services_text_2, advance_services_text_3, advance_services_text_4
 
 
+
 # Инициализация роутера
 menu_han_router = Router()
 
