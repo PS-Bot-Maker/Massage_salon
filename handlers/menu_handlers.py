@@ -1,8 +1,8 @@
 from aiogram import Router, types, F
 from aiogram.filters.command import Command
-from aiogram.types import InputMediaPhoto, InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.types import InputMediaAnimation, InputMediaVideo, InlineKeyboardMarkup, InlineKeyboardButton
 from bot_config import services_text, hello, int_pic, out_pic, sale_pic, spec_pic, proc_pic, help_pic, privacy_file
-from bot_config import spec_pic, spec2_pic, spec3_pic, spec4_pic
+from bot_config import spec_pic, spec2_pic, spec3_pic, spec4_pic, advance_services_text_1, advance_services_text_2, advance_services_text_3, advance_services_text_4
 
 
 # Инициализация роутера
@@ -60,6 +60,7 @@ async def main_board(message: types.Message):
 # Хендлер для callback-запросов
 @menu_han_router.callback_query()
 async def callback_handler(callback: types.CallbackQuery):
+    
     # Обрабатываем кнопку «Услуги»
     if callback.data == "serv":
         media = InputMediaPhoto(
@@ -76,6 +77,31 @@ async def callback_handler(callback: types.CallbackQuery):
         except Exception as e:
             await callback.answer(f"Ошибка: {e}")
     
+    # Листаем подробное описание услуг с видеопрезентациями
+    elif callback.data == "adv_serv_1":
+        media = InputMediaAnimation(
+            media=adv_serv1.gif,  
+            caption=advance_services_text_1
+        )
+        try:
+            await callback.bot.edit_message_media(
+                chat_id=callback.message.chat.id,
+                message_id=callback.message.message_id,
+                media=media,
+                reply_markup= InlineKeyboardMarkup(inline_keyboard=[
+                [
+                    InlineKeyboardButton(text="⏪", callback_data="adv_serv_4"),  # Предыдущая специалист
+                    InlineKeyboardButton(text="⏩", callback_data="adv_serv_2"),  # Следующий специалист   
+                ],
+                [
+                    InlineKeyboardButton(text="Записаться📝", callback_data="order"),
+                    InlineKeyboardButton(text="←Меню", callback_data="back")
+                ]
+                ])
+                )
+        except Exception as e:
+            await callback.answer(f"Ошибка: {e}")
+
     # Открываем главное меню
     elif callback.data == "menubtn":
         media = InputMediaPhoto(
