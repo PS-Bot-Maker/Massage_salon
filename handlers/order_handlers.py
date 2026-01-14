@@ -7,8 +7,9 @@ import asyncio
 import sqlite3
 import re
 from handlers.menu_handlers import menu_han_router, main_board
+import os 
 
-GROUP_CHAT_ID = "-1003544458506"
+GROUP_CHAT_ID = os.getenv('PRIVATE_CHAT_ID')
 
 order_han_router = Router()
 
